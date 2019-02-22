@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+		.stock_input{
+			display: inline;
+			width: 60%;
+			margin: 20px auto;
+			padding: 8px;
+			font-size: 16px;
+		}
+		.btn{
+			border: 2px soild blue;
+			margin: 10px 40px 20px 20px;
+			padding: 5px 25px;
+			font-size: 20px;
+			background-color: #405ab6;
+		}
+		.btn-history{
+			background-color: #bc9e9a;
+		}
+		.btn-help{
+			background-color: #1bbf6e;
+		}
+		.result{
+			maegin: 18px 18px 18px 18px;
+			font-size: 20px;
+			color: #141212;
+		}
+		.head{
+			padding: 10px 20px;
+			color: blue;
+		}
+	</style>
+</head>
+<boby>
+<div class=head style="text-align:right">
+	{% if session.login %}
+		<span>{{ session.user.username }}</span>
+		|
+		<a href="{{ url_for('logout')}}">退出</a>
+	{% else %}
+		<a href="{{ url_for('login') }}">登录</a>
+		|
+		<a href="{{ url_for('register') }}">注册</a>
+	{% endif %}
+</div>
+<div style="text-align:center">
+	<h1>股票通--查询沪深股市的股票价格</h1>
+	<form action="/">
+		<input class="stock_input" name= "stock_code" value="{{stock_code}}"
+		placeholder="请输入你要查询的公司股票代码,sh开头是上海股市,sz开头是深圳股市"/><br>
+		<input class="btn"type="submit" value="查询" />
+		<a class="btn btn-history" href="/history/">历史</a>
+		<a class="btn btn-help" href="/help/">帮助</a>
+	</form>
+	<div class="result" style="text-align:left">
+	{% if query_result %}{{query_result}}
+	{% elif history %}
+		{% for his in history %}
+			<p>{{ his.query_time }}查询股票代码{{ his.stock_code }}的结果是:
+				{{ his.result }}
+			</p>
+		{% endfor %}
+	{% elif history == "" and not session.user %}
+		<p>需登录才能查询历史记录</p>
+	{% elif help %}{{ help }}
+	{% else %}{% endif %}
+	</div>
+</div>
+</boby>
+</html>

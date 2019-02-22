@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+		.log{
+			width: 30%;
+			padding: 8px;
+			margin: 15px;
+			font-size: 15px;
+		}
+		.btn-log{
+			width: 20%;
+			border: 2px soild blue;
+			margin: 10px 40px 20px 20px;
+			padding: 5px 25px;
+			font-size: 20px;
+			background-color: #1c38ce;
+		}
+		.error{
+			color: red;
+		}
+	</style>
+</head>
+<boby>
+<div style="text-align:center">
+	<h1>股票通--用户登录</h1>
+	<form action="/login/" method="post">
+		<input class="log" name= "username" placeholder="请输入用户名" value="{{username}}"/><br>
+		<input class="log" type="password" name= "password" placeholder="请输入密码"/><br>
+		<input class="btn-log"type="submit" value="登录" />
+	</form>
+	<div class="error">
+		{% if error %}<p>{{ error }}</p>{% endif %}
+	</div>
+</div>
+</boby>
+</html>

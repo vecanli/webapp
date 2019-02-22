@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+		.cre{
+			width: 30%;
+			padding: 8px;
+			margin: 15px;
+			font-size: 15px;
+		}
+		.btn{
+			width: 20%;
+			border: 2px soild blue;
+			margin: 10px 40px 20px 20px;
+			padding: 5px 25px;
+			font-size: 20px;
+			background-color: #6bb02a;
+		}
+		.error{
+			color: red;
+		}
+	</style>
+</head>
+<boby>
+<div style="text-align:center">
+	<h1>股票通--用户注册</h1>
+	<form action="/register/" method="post">
+		<input class="cre" name= "username" placeholder="请输入用户名" value="{{username}}"/><br>
+		<input class="cre" type="password" name= "password" placeholder="请输入密码"/><br>
+		<input class="cre" type="password" name= "re_password" placeholder="请确认密码"/><br>
+		<input class="btn"type="submit" value="注册" />
+	</form>
+	<div class="error">
+		{% if error %}<p>{{ error }}</p>{% endif %}
+	</div>
+</div>
+</boby>
+</html>
